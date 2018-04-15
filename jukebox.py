@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import glob
 import os
@@ -62,7 +61,7 @@ class Jukebox:
         if card_path.startswith('http'):
             self.playlist.append(card_path)
         else:
-            for infile in glob.glob(card_path):
+            for infile in glob.glob(card_path.encode('utf-8')):
                 self.playlist.append(infile)
 
             if len(self.playlist) == 0:

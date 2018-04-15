@@ -1,6 +1,6 @@
 # Raspberry PI + RFID = Jukebox
 
-Inspired by [this](https://github.com/hoveeman/music-cards) and [that](https://pimylifeup.com/raspberry-pi-rfid-rc522/).
+Play music with RFID cards. Inspired by [this](https://github.com/hoveeman/music-cards) and [that](https://pimylifeup.com/raspberry-pi-rfid-rc522/).
 
 ### Prerequisites
 **Raspberry Pi** and **RC522 RFID Reader** connected as:
@@ -16,25 +16,23 @@ Inspired by [this](https://github.com/hoveeman/music-cards) and [that](https://p
 ```
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y omxplayer git python-pip
+sudo apt-get install -y omxplayer git supervisor python-pip
 git clone https://github.com/argoroots/jukebox.git
-cd jukebox
-pip install -r requirements.txt
+pip install -r jukebox/requirements.txt
+sudo cp jukebox/supervisor.conf /etc/supervisor/conf.d/
 ```
 
 ### Configuration
-Enable the SPI Interface by running command:
+#### SPI Interface
+Enable the SPI Interface by running following command. From first screen select **5 Interfacing Options**, then **P4 SPI** and enable it.
 ```
 sudo raspi-config
 ```
-From first screen select **5 Interfacing Options**, then **P4 SPI** and enable it.
 
 Check if it's enambed by running following command. It must list _spi_bcm2835_.
 ```
 lsmod | grep spi
 ```
 
-Start jukebox on system start by adding following line to the file _/etc/rc.local_:
-```
-_python /home/pi/jukebox/jukebox.py /home/pi/jukebox/cards.yaml_
-```
+#### Cards & music
+Add card ids and corresponding folder or stream url to _cards.yaml_.

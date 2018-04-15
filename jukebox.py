@@ -24,6 +24,8 @@ class Jukebox:
         self.playlist = []
         self.song = 0
 
+        print('Loaded %s cards' % len(self.cards))
+
 
     def read_rfid(self):
         reader = MFRC522.MFRC522()

@@ -1,0 +1,2 @@
+pyyaml
+https://github.com/lthiery/SPI-Py.git

@@ -19,7 +19,7 @@ GPIO.cleanup()
 class Jukebox:
     def __init__(self, cards_file='cards.yaml'):
         self.player = None
-        self.cards = yaml.load(open('cards.yaml'))
+        self.cards = yaml.load(open(cards_file))
         self.card = None
         self.playlist = []
         self.song = 0
@@ -81,7 +81,7 @@ class Jukebox:
             self.song = song
 
         mp3_path = self.playlist[self.song]
-        print('Play: %s' % mp3_path)
+        print('Play %s' % mp3_path)
         self.player = subprocess.Popen(['omxplayer', mp3_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
@@ -114,4 +114,8 @@ class Jukebox:
 
 
 if __name__ == '__main__':
-    Jukebox('cards.yaml').start()
+    if len(sys.argv) < 2:
+        print('Give cards Yaml file as first argument')
+        sys.exit(1)
+
+    Jukebox(sys.argv[1]).start()

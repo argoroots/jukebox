@@ -1,2 +1,2 @@
 pyyaml
-https://github.com/lthiery/SPI-Py.git
+git+git://github.com/lthiery/SPI-Py.git

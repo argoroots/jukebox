@@ -11,6 +11,7 @@ Play music with RFID cards. Inspired by [this](https://github.com/hoveeman/music
   - **GND** connects to **Pin 6**
   - **RST** connects to **Pin 22**
   - **3.3v** connects to **Pin 1**
+
 ![](raspberry-pi-rfid-rc522.png)
 
 ### Setup

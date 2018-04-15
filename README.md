@@ -19,3 +19,5 @@ sudo apt-get upgrade
 sudo apt-get install -y omxplayer git python-pip
 git clone https://github.com/argoroots/jukebox.git
 ```
+
+Start jukebox on system start by adding a line _python /home/pi/jukebox/jukebox.py /home/pi/jukebox/cards.yaml_ to the file _/etc/rc.local_.

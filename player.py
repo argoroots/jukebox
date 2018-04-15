@@ -56,13 +56,21 @@ while(1):
             song = 0
             playlist = []
 
-            for infile in glob.glob(cards[rfid]):
-                playlist.append(infile)
-            playlist.sort()
+            if rfid not in cards:
+                print('Unknown card: %s' % rfid)
+            else:
+                print('Card: %s' % rfid)
 
-            mp3_path = playlist[song]
-            print('Play: ' + mp3_path)
-            player = subprocess.Popen(['omxplayer', mp3_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                if cards[rfid].startswith('http'):
+                    playlist.append(cards[rfid])
+                else:
+                    for infile in glob.glob(cards[rfid]):
+                        playlist.append(infile)
+                playlist.sort()
+
+                mp3_path = playlist[song]
+                print('Play: %s' % mp3_path)
+                player = subprocess.Popen(['omxplayer', mp3_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         if card and player.poll() == 0:
             song = song + 1
@@ -70,7 +78,7 @@ while(1):
                 song = 0
 
             mp3_path = playlist[song]
-            print('Play: ' + mp3_path)
+            print('Play: %s' % mp3_path)
             player = subprocess.Popen(['omxplayer', mp3_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 

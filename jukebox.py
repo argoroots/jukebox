@@ -27,17 +27,19 @@ class Jukebox:
 
 
     def read_rfid(self):
-        PortRF = serial.Serial('/dev/ttyAMA0', 9600)
-        read_byte = PortRF.read()
+        ser = serial.Serial('/dev/ttyAMA0', 9600)
+        time.sleep(1)
 
-        print(read_byte)
+        if ser.inWaiting() == 0:
+            return
+
+        read_byte = ser.read()
 
         ID = ''
         if read_byte == '\x02':
             for Counter in range(12):
-                read_byte=PortRF.read()
+                read_byte=ser.read()
                 ID = ID + str(read_byte)
-            print(ID)
             return ID
 
 
@@ -100,6 +102,8 @@ class Jukebox:
                 rfid = self.read_rfid()
 
                 if rfid:
+                    self.stop_player()
+
                     if self.load_card(rfid):
                         self.play_file(0)
                     if self.player.poll() == 0:

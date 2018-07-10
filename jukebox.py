@@ -2,6 +2,7 @@
 
 import glob
 import os
+import serial
 import subprocess
 import sys
 import time
@@ -12,7 +13,10 @@ import MFRC522
 
 
 GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
+
+PortRF = serial.Serial('/dev/ttyAMA0', 9600)
 
 
 class Jukebox:
@@ -27,6 +31,20 @@ class Jukebox:
 
 
     def read_rfid(self):
+        read_byte = PortRF.read()
+
+        print(read_byte)
+
+        ID = ''
+        if read_byte == '\x02':
+            for Counter in range(12):
+                read_byte=PortRF.read()
+                ID = ID + str(read_byte)
+            print(ID)
+            return ID
+
+
+    def read_nfc(self):
         reader = MFRC522.MFRC522()
 
         (status, TagType) = reader.MFRC522_Request(reader.PICC_REQIDL)

@@ -1,2 +1,3 @@
+python-serial
 pyyaml
 git+git://github.com/lthiery/SPI-Py.git

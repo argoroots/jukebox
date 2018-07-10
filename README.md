@@ -1,18 +1,11 @@
 # Raspberry PI + RFID = Jukebox
 
-Play music with RFID cards. Inspired by [this](https://github.com/hoveeman/music-cards) and [that](https://pimylifeup.com/raspberry-pi-rfid-rc522/).
+Play music with RFID cards. Inspired by [this](https://github.com/hoveeman/music-cards) and [that](https://behindthesciences.com/electronics/raspberry-pi-rfid-tag-reader/).
 
 ### Hardware
-Connect **Raspberry Pi** and **RC522 RFID Reader**.
-  - **SDA** connects to **Pin 24**
-  - **SCK** connects to **Pin 23**
-  - **MOSI** connects to **Pin 19**
-  - **MISO** connects to **Pin 21**
-  - **GND** connects to **Pin 6**
-  - **RST** connects to **Pin 22**
-  - **3.3v** connects to **Pin 1**
+Connect **Raspberry Pi** and **RDM6300 RFID Reader**.
 
-![](raspberry-pi-rfid-rc522.png)
+![](raspberry-pi-rfid-rdm6300.png)
 
 ### Software
 
@@ -20,7 +13,7 @@ Update system and then install all necessary software.
 ```
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y omxplayer git supervisor python-pip
+sudo apt-get install -y omxplayer git supervisor python-pip python-serial
 git clone https://github.com/argoroots/jukebox.git
 pip install -r jukebox/requirements.txt
 ```

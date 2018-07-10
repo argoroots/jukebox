@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import glob
-import os
 import serial
 import subprocess
 import sys
@@ -9,14 +8,11 @@ import time
 import yaml
 
 import RPi.GPIO as GPIO
-import MFRC522
 
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
-
-PortRF = serial.Serial('/dev/ttyAMA0', 9600)
 
 
 class Jukebox:
@@ -31,6 +27,7 @@ class Jukebox:
 
 
     def read_rfid(self):
+        PortRF = serial.Serial('/dev/ttyAMA0', 9600)
         read_byte = PortRF.read()
 
         print(read_byte)
@@ -42,23 +39,6 @@ class Jukebox:
                 ID = ID + str(read_byte)
             print(ID)
             return ID
-
-
-    def read_nfc(self):
-        reader = MFRC522.MFRC522()
-
-        (status, TagType) = reader.MFRC522_Request(reader.PICC_REQIDL)
-        if status != reader.MI_OK:
-            return None
-
-        (status, uid) = reader.MFRC522_Anticoll()
-        if status != reader.MI_OK:
-            return None
-
-        n = 0
-        for i in range(0, 5):
-            n = n * 256 + uid[i]
-        return n
 
 
     def load_card(self, rfid):

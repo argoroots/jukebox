@@ -121,6 +121,8 @@ class Jukebox:
                     errors = errors + 1
 
                     if errors > 9:
+                        old_rfid = ''
+                        errors = 0
                         self.stop_player()
 
                 time.sleep(0.1)

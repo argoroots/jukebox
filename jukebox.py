@@ -97,11 +97,11 @@ class Jukebox:
 
 
     def start(self):
+        old_rfid = ''
         errors = 0
 
         while(1):
             try:
-                old_rfid = ''
                 rfid = self.read_rfid()
 
                 if rfid:

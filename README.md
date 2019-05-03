@@ -5,23 +5,23 @@ Play music with RFID cards. Inspired by [this](https://github.com/hoveeman/music
 ### Hardware
 Connect **Raspberry Pi** and **RDM6300 RFID Reader**.
 
-![](raspberry-pi-rfid-rdm6300.png)
-
 ### Software
 
 Update system and then install all necessary software.
 ```
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y omxplayer git supervisor python-pip python-serial
+sudo apt-get install -y omxplayer git python-pip python-serial
 git clone https://github.com/argoroots/jukebox.git
-pip install -r jukebox/requirements.txt
+pip install pyyaml
 ```
 
-Copy supervisor configuration.
+Start jukebox on boot by adding following line to _/etc/rc.local_.
 ```
-sudo cp jukebox/supervisor.conf /etc/supervisor/conf.d/
+python -u /home/pi/jukebox/jukebox.py /home/pi/jukebox/cards.yaml > /home/pi/jukebox/jukebox.log &
 ```
+
+Disable the login shell over serial by running following command. From first screen select **5 Interfacing Options**, then **P6 Serial** and disable it.
 Enable the SPI Interface by running following command. From first screen select **5 Interfacing Options**, then **P4 SPI** and enable it.
 ```
 sudo raspi-config

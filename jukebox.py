@@ -97,21 +97,33 @@ class Jukebox:
 
 
     def start(self):
+        errors = 0
+
         while(1):
             try:
+                old_rfid = ''
                 rfid = self.read_rfid()
 
                 if rfid:
-                    self.stop_player()
+                    errors = 0
 
-                    if self.load_card(rfid):
-                        self.play_file(0)
-                    if self.player.poll() == 0:
-                        self.play_file()
+                    if rfid != old_rfid:
+                        self.stop_player()
+
+                        if self.load_card(rfid):
+                           self.play_file(0)
+                        if self.player.poll() == 0:
+                           self.play_file()
+
+                        old_rfid = rfid
+
                 else:
-                    self.stop_player()
+                    errors = errors + 1
 
-                time.sleep(1)
+                    if errors > 9:
+                        self.stop_player()
+
+                time.sleep(0.1)
             except Exception as err:
                 print(str(err))
 

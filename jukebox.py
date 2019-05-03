@@ -18,7 +18,7 @@ GPIO.cleanup()
 class Jukebox:
     def __init__(self, cards_file='cards.yaml'):
         self.player = None
-        self.cards = yaml.load(open(cards_file))
+        self.cards = yaml.load(open(cards_file), Loader=yaml.Loader)
         self.card = None
         self.playlist = []
         self.song = 0

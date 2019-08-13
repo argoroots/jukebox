@@ -1,9 +1,14 @@
 # Local files
-000000000000: /home/pi/music/Dagö/**/*.*
-000000000001: /home/pi/music/Dagö/Möödakarvapai/*.*
+5500D65FA874: /home/pi/music/Dagö/**/*.*
+5500D66FB458: /home/pi/music/Naised köögis/*.*
+5500D2B55A68: /home/pi/music/Pantokraator/*.*
+5500D65407D0: /home/pi/music/Tarmo ja Toomas Urb/**/*.*
 
 # Streaming
-000000000002: https://sb.err.ee/live/raadio2.m3u8
-5500D6DD94CA: http://striiming.trio.ee:8008/kuku.aac
-000000000003: https://skyplus.babahhcdn.com/SKYPLUS
-5500D638A219: https://skyplus.babahhcdn.com/RETRO
+5500D6804E4D: https://sb.err.ee/live/klassikaraadio.m3u8
+5500D6442EE9: https://sb.err.ee/live/raadio2.m3u8
+5500D6DD94CA: https://sb.err.ee/live/vikerraadio.m3u8
+5500D29B9488: https://skyplus.babahhcdn.com/RETRO
+5500D2941A09: https://skyplus.babahhcdn.com/SKYPLUS
+5500D2CCB1FA: https://streamer.eestimeedia.ee/elmar.aac
+5500D2B5596B: https://streamer.eestimeedia.ee/kuku.aac

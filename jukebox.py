@@ -112,7 +112,7 @@ class Jukebox:
 
                         if self.load_card(rfid):
                            self.play_file(0)
-                        if self.player.poll() == 0:
+                        if self.player and self.player.poll() == 0:
                            self.play_file()
 
                         old_rfid = rfid

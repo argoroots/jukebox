@@ -83,7 +83,7 @@ class Jukebox:
 
         mp3_path = self.playlist[self.song]
         print('Play %s' % mp3_path)
-        self.player = subprocess.Popen(['omxplayer', mp3_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        self.player = subprocess.Popen(['omxplayer', '-o', 'alsa', '-w', '-I', '--no-keys', mp3_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
     def stop_player(self):

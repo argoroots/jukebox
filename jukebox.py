@@ -27,7 +27,8 @@ class Jukebox:
 
 
     def read_rfid(self):
-        ser = serial.Serial('/dev/ttyS0', 9600)
+        # ser = serial.Serial('/dev/ttyS0', 9600)
+        ser = serial.Serial('/dev/ttyAMA0', 9600)
         time.sleep(1)
 
         if ser.inWaiting() == 0:
@@ -64,9 +65,9 @@ class Jukebox:
             for infile in glob.glob(card_path.encode('utf-8')):
                 self.playlist.append(infile)
 
-            if len(self.playlist) == 0:
-                print('No files to play')
-                return
+        if len(self.playlist) == 0:
+            print('No files to play')
+            return
 
         self.playlist.sort()
 
@@ -112,11 +113,10 @@ class Jukebox:
 
                         if self.load_card(rfid):
                            self.play_file(0)
+                           old_rfid = rfid
+                    else:
                         if self.player and self.player.poll() == 0:
                            self.play_file()
-
-                        old_rfid = rfid
-
                 else:
                     errors = errors + 1
 

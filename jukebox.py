@@ -27,7 +27,7 @@ class Jukebox:
 
 
     def read_rfid(self):
-        ser = serial.Serial('/dev/ttyAMA0', 9600)
+        ser = serial.Serial('/dev/ttyS0', 9600)
         time.sleep(1)
 
         if ser.inWaiting() == 0:

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import glob
+import random
 import serial
 import subprocess
 import sys
@@ -27,8 +28,8 @@ class Jukebox:
 
 
     def read_rfid(self):
-        # ser = serial.Serial('/dev/ttyS0', 9600)
-        ser = serial.Serial('/dev/ttyAMA0', 9600)
+        # ser = serial.Serial('/dev/ttyS0', 9600, timeout=0.5)
+        ser = serial.Serial('/dev/ttyAMA0', 9600, timeout=0.5)
         time.sleep(1)
 
         if ser.inWaiting() == 0:
@@ -69,8 +70,8 @@ class Jukebox:
             print('No files to play')
             return
 
-        self.playlist.sort()
-
+        #self.playlist.sort()
+        random.shuffle(self.playlist)
         return True
 
 
@@ -113,14 +114,14 @@ class Jukebox:
 
                         if self.load_card(rfid):
                            self.play_file(0)
+
                            old_rfid = rfid
                     else:
                         if self.player and self.player.poll() == 0:
                            self.play_file()
                 else:
                     errors = errors + 1
-
-                    if errors > 9:
+                    if errors > 7:
                         old_rfid = ''
                         errors = 0
                         self.stop_player()
